@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="100dp" >
+
+    <TextView
+        android:id="@+id/dayForecast"
+        android:textColor="#13171A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:textSize="20sp"
+        android:paddingTop="5sp"
+        android:paddingBottom="5sp"
+        android:layout_centerInParent="true"
+        />
+    <TextView
+        android:id="@+id/temperatureForecast"
+        android:textSize="20sp"
+        android:textColor="#13171A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20sp"
+        android:layout_centerInParent="true"
+        />
+    <TextView
+        android:id="@+id/descriptionForecast"
+        android:textColor="#13171A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="30sp"
+        />
+
+</RelativeLayout>
