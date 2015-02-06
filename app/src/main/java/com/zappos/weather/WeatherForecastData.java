@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by abhis_000 on 1/27/15.
+ * Created by Abhishek Talluri on 1/31/15.
+ * Description: Class for the weather forecast
+ * which contains the list of WeatherData
+ *
  */
 public class WeatherForecastData {
 

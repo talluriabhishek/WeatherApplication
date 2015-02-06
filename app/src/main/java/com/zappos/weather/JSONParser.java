@@ -6,18 +6,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
 /**
- * Created by abhis_000 on 1/27/15.
+ * Created by Abhishek Talluri on 1/31/15.
+ * Description: This class parses the JSON data that is retrieved as part of the
+ * request to the weather api in WeatherRequest.java
  */
 public class JSONParser {
-
-
 
     public static WeatherData getWeather(String data) throws JSONException {
         WeatherData weather = new WeatherData();
@@ -37,7 +34,7 @@ public class JSONParser {
 
         weather.setCity(getString("name", jObj));
 
-        // We get weather info (This is an array)
+        // The weather info is stored as an array.
         JSONArray jArr = jObj.getJSONArray("weather");
 
         // We use only the first value
@@ -64,7 +61,6 @@ public class JSONParser {
         ArrayList<String> days = new ArrayList<String>(){{add("SUNDAY");add("MONDAY");add("TUESDAY");add("WEDNESDAY");add("THURSDAY");add("FRIDAY");add("SATURDAY");}};
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
-        System.out.println("Day -- ["+day+"]");
 
         for (int i=0; i < jArr.length(); i++) {
 
@@ -73,17 +69,16 @@ public class JSONParser {
 
             // Now we have the json object so we can extract the data
 
-                // Temp is an object
-                JSONObject jTempObj = jDayForecast.getJSONObject("temp");
-                weather.setTemperature(Math.round((jTempObj.getDouble("day") - 273.15)));
-                weather.setDay(days.get((day+i)%7));
+            JSONObject jTempObj = jDayForecast.getJSONObject("temp");
+            weather.setTemperature(Math.round((jTempObj.getDouble("day") - 273.15)));
+            weather.setDay(days.get((day+i)%7));
 
-                // ...and now the weather
-                JSONArray jWeatherArr = jDayForecast.getJSONArray("weather");
-                JSONObject jWeatherObj = jWeatherArr.getJSONObject(0);
-                weather.setDescription(getString("description", jWeatherObj));
+            // we extract the description from the weather
+            JSONArray jWeatherArr = jDayForecast.getJSONArray("weather");
+            JSONObject jWeatherObj = jWeatherArr.getJSONObject(0);
+            weather.setDescription(getString("description", jWeatherObj));
 
-                forecast.addForecast(weather);
+            forecast.addForecast(weather);
         }
         return forecast;
     }

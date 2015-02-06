@@ -1,7 +1,6 @@
 package com.zappos.weather;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,8 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by abhis_000 on 1/27/15.
+ * Created by Abhishek Talluri on 1/31/15.
+ * Description: This is the custom adapter for holding the list views row
  */
 public class CustomList extends ArrayAdapter<WeatherData>{
 

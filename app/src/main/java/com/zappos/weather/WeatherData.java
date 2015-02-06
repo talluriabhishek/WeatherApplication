@@ -1,7 +1,8 @@
 package com.zappos.weather;
 
 /**
- * Created by abhis_000 on 1/27/15.
+ * Created by Abhishek Talluri on 1/31/15.
+ * Description: Class structure for the weather related data
  */
 public class WeatherData {
 
@@ -10,7 +11,6 @@ public class WeatherData {
     private String city;
     private String description;
     private String heading;
-    public byte[] iconData;
 
     public String getHeading() {
         return heading;

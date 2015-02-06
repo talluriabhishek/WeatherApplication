@@ -8,7 +8,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by abhis_000 on 1/27/15.
+ * Created by Abhishek Talluri on 1/31/15.
+ * Description: This file consists of the connection requests
+ * to the web, both for the weather and the weather forecast.
  */
 public class WeatherRequest {
 
@@ -21,13 +23,15 @@ public class WeatherRequest {
         InputStream is = null;
 
         try {
+
+            //Making the connection request for the weather data
             con = (HttpURLConnection) ( new URL(WEATHER_URL + location)).openConnection();
             con.setRequestMethod("GET");
             con.setDoInput(true);
             con.setDoOutput(true);
             con.connect();
 
-            // Let's read the response
+            // Reading the response from the connection request
             StringBuffer buffer = new StringBuffer();
             is = con.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -58,7 +62,7 @@ public class WeatherRequest {
 
         try {
 
-            // Forecast
+            //Making the connection request for the weather forecast data
             String url = WEATHER_FORECAST_URL + location;
             if (lang != null)
                 url = url + "&lang=" + lang;
@@ -70,7 +74,7 @@ public class WeatherRequest {
             con.setDoOutput(true);
             con.connect();
 
-            // Let's read the response
+            // Reading the response from the connection request
             StringBuffer buffer1 = new StringBuffer();
             is = con.getInputStream();
             BufferedReader br1 = new BufferedReader(new InputStreamReader(is));
@@ -80,41 +84,7 @@ public class WeatherRequest {
 
             is.close();
             con.disconnect();
-
-            System.out.println("Buffer ["+buffer1.toString()+"]");
             return buffer1.toString();
-        }
-        catch(Throwable t) {
-            t.printStackTrace();
-        }
-        finally {
-            try { is.close(); } catch(Throwable t) {}
-            try { con.disconnect(); } catch(Throwable t) {}
-        }
-
-        return null;
-
-    }
-
-    public byte[] getImage(String code) {
-        HttpURLConnection con = null ;
-        InputStream is = null;
-        try {
-            con = (HttpURLConnection) ( new URL(IMG_URL + code)).openConnection();
-            con.setRequestMethod("GET");
-            con.setDoInput(true);
-            con.setDoOutput(true);
-            con.connect();
-
-            // Let's read the response
-            is = con.getInputStream();
-            byte[] buffer = new byte[1024];
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            while ( is.read(buffer) != -1)
-                baos.write(buffer);
-
-            return baos.toByteArray();
         }
         catch(Throwable t) {
             t.printStackTrace();
